@@ -11,7 +11,7 @@ import java.util.List;
 class StandingsService {
     private final PointsCalculator calculator;
 
-    public StandingsService(@Qualifier("modernPointsCalculator") PointsCalculator calculator) {
+    public StandingsService(@Qualifier("configurablePointsCalculator") PointsCalculator calculator) {
         this.calculator = calculator;
     }
 
