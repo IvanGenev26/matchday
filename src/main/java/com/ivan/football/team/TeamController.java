@@ -1,12 +1,12 @@
 package com.ivan.football.team;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -26,5 +26,11 @@ class TeamController {
     @GetMapping("/{id}")
     public Team getTeam(@PathVariable Long id) {
         return service.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Team " + id + " not found"));
+    }
+
+    @PostMapping
+    public ResponseEntity<Team> createTeam(@Valid @RequestBody CreateTeamRequest request) {
+        Team created = service.create(request);
+        return ResponseEntity.created(URI.create("/api/teams/" + created.id())).body(created);
     }
 }

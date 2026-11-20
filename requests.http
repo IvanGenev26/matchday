@@ -1,0 +1,29 @@
+### All leagues
+GET http://localhost:8080/api/leagues
+
+### Create a league
+POST http://localhost:8080/api/leagues
+Content-Type: application/json
+
+{"name": "Serie A", "country": "Italy"}
+
+### Invalid: empty name
+POST http://localhost:8080/api/leagues
+Content-Type: application/json
+
+{"name": "", "country": "Italy"}
+
+###AllTeams
+GET http://localhost:8080/api/teams
+
+###Create a team
+POST http://localhost:8080/api/teams
+Content-Type: application/json
+
+{"name": "Juventus", "city": "Turin", "leagueId": "4"}
+
+### Invalid: empty name
+POST http://localhost:8080/api/teams
+Content-Type: application/json
+
+{"name": "", "country": "Turin"}

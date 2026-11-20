@@ -3,6 +3,7 @@ package com.ivan.football.league;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class LeagueService {
@@ -20,5 +21,14 @@ public class LeagueService {
 
     public Optional<League> findById(Long id) {
         return Optional.ofNullable(leagues.get(id));
+    }
+
+    private final AtomicLong nextId = new AtomicLong(4);
+
+    public League create(CreateLeagueRequest request) {
+        Long id = nextId.getAndIncrement();
+        League league = new League(id, request.name(), request.country());
+        leagues.put(id, league);
+        return league;
     }
 }

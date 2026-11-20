@@ -1,9 +1,12 @@
 package com.ivan.football.team;
 
+import com.ivan.football.league.League;
 import org.springframework.stereotype.Service;
 
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class TeamService {
@@ -26,5 +29,14 @@ public class TeamService {
 
     public Optional<Team> findById(Long id) {
         return Optional.ofNullable(teams.get(id));
+    }
+
+    public final AtomicLong nextId = new AtomicLong(5);
+
+    public Team create(CreateTeamRequest request) {
+        Long id = nextId.getAndIncrement();
+        Team team = new Team(id, request.name(), request.city(), request.leagueId());
+        teams.put(id, team);
+        return team;
     }
 }
