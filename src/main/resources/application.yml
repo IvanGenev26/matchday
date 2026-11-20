@@ -1,6 +1,8 @@
 spring:
   application:
     name: football
+  profiles:
+    active: dev,retro
 
 matchday:
   default-league: Premier League
