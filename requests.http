@@ -60,3 +60,15 @@ POST http://localhost:8080/api/players
 Content-Type: application/json
 
 {"name": "Declan Rice", "position": "Midfielder", "teamId": 1}
+
+### Team in missing league
+POST http://localhost:8080/api/teams
+Content-Type: application/json
+
+{"name": "Ghost FC", "city": "Nowhere", "leagueId": 99}
+
+### Player in missing team
+POST http://localhost:8080/api/players
+Content-Type: application/json
+
+{"name": "Nobody", "position": "Forward", "shirtNumber": 9, "teamId": 99}

@@ -1,6 +1,7 @@
 package com.ivan.football.team;
 
 import com.ivan.football.common.NotFoundException;
+import com.ivan.football.league.LeagueService;
 import org.springframework.stereotype.Service;
 
 
@@ -11,9 +12,11 @@ import java.util.concurrent.atomic.AtomicLong;
 public class TeamService {
     private final Map<Long, Team> teams = new LinkedHashMap<>();
     private final AtomicLong nextId = new AtomicLong(5);
+    private final LeagueService leagueService;
 
 
-    public TeamService() {
+    public TeamService(LeagueService leagueService) {
+        this.leagueService = leagueService;
         teams.put(1L, new Team(1L, "Arsenal", "London", 1L));
         teams.put(2L, new Team(2L, "Liverpool", "Liverpool", 1L));
         teams.put(3L, new Team(3L, "Barcelona", "Barcelona", 2L));
@@ -36,6 +39,7 @@ public class TeamService {
 
 
     public Team create(CreateTeamRequest request) {
+        leagueService.findById(request.leagueId());
         Long id = nextId.getAndIncrement();
         Team team = new Team(id, request.name(), request.city(), request.leagueId());
         teams.put(id, team);
