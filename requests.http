@@ -34,8 +34,14 @@ GET http://localhost:8080/api/players
 ###firstPlayer
 GET http://localhost:8080/api/players/1
 
-###Invalid
+###Invalid: Player page
 GET http://localhost:8080/api/players/99
+
+###Invalid: Leagues page
+GET http://localhost:8080/api/leagues/99
+
+###Invalid: teams page
+GET http://localhost:8080/api/teams/99
 
 ###Create a player
 POST http://localhost:8080/api/players

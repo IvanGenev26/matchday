@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,12 +23,12 @@ class PlayerController {
 
    @GetMapping("/{id}")
    public Player findById(@PathVariable Long id) {
-        return service.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Player " + id + " not found"));
+        return service.findById(id);
    }
 
    @PostMapping
     public ResponseEntity<Player> createPlayer(@Valid @RequestBody CreatePlayerRequest request) {
         Player created = service.create(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        return ResponseEntity.created(URI.create("/api/players/" + created.id())).body(created);
    }
 }

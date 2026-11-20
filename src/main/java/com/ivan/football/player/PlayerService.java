@@ -1,5 +1,6 @@
 package com.ivan.football.player;
 
+import com.ivan.football.common.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -24,8 +25,9 @@ public class PlayerService {
         return players.values().stream().filter(player -> player.teamId().equals(teamId)).toList();
     }
 
-    public Optional<Player> findById(Long id) {
-        return Optional.ofNullable(players.get(id));
+    public Player findById(Long id) {
+        return Optional.ofNullable(players.get(id))
+                .orElseThrow(() -> new NotFoundException("Player " + id + " not found"));
     }
 
 
