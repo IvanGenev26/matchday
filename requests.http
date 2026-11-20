@@ -20,10 +20,37 @@ GET http://localhost:8080/api/teams
 POST http://localhost:8080/api/teams
 Content-Type: application/json
 
-{"name": "Juventus", "city": "Turin", "leagueId": "4"}
+{"name": "Juventus", "city": "Turin", "leagueId": 4}
 
 ### Invalid: empty name
 POST http://localhost:8080/api/teams
 Content-Type: application/json
 
-{"name": "", "country": "Turin"}
+{"name": "", "city": "Turin"}
+
+###AllPlayers
+GET http://localhost:8080/api/players
+
+###firstPlayer
+GET http://localhost:8080/api/players/1
+
+###Invalid
+GET http://localhost:8080/api/players/99
+
+###Create a player
+POST http://localhost:8080/api/players
+Content-Type: application/json
+
+{"name": "Declan Rice", "position": "Midfielder","shirtNumber": 47,"teamId": 1}
+
+### Invalid: empty name
+POST http://localhost:8080/api/players
+Content-Type: application/json
+
+{"name": "", "position": "Midfielder", "shirtNumber": 47, "teamId": 1}
+
+### Invalid: empty shirtNumber
+POST http://localhost:8080/api/players
+Content-Type: application/json
+
+{"name": "Declan Rice", "position": "Midfielder", "teamId": 1}

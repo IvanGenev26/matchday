@@ -2,7 +2,7 @@ spring:
   application:
     name: football
   profiles:
-    active: dev,retro
+    active: dev
 
 matchday:
   default-league: Premier League
