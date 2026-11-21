@@ -5,7 +5,19 @@ GET http://localhost:8080/api/leagues
 POST http://localhost:8080/api/leagues
 Content-Type: application/json
 
-{"name": "Serie A", "country": "Italy"}
+{"name": "Premier League", "country": "England"}
+
+### Create a league
+POST http://localhost:8080/api/leagues
+Content-Type: application/json
+
+{"name": "Bundersliga", "country": "Germany"}
+
+### Create a league
+POST http://localhost:8080/api/leagues
+Content-Type: application/json
+
+{"name": "Efbet League", "country": "Bulgaria"}
 
 ### Invalid: empty name
 POST http://localhost:8080/api/leagues

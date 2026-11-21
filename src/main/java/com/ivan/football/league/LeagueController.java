@@ -39,6 +39,6 @@ class LeagueController {
     @PostMapping
     public ResponseEntity<League> create(@Valid @RequestBody CreateLeagueRequest request) {
         League created = service.create(request);
-        return ResponseEntity.created(URI.create("/api/leagues/" + created.id())).body(created);
+        return ResponseEntity.created(URI.create("/api/leagues/" + created.getId())).body(created);
     }
 }
